@@ -6,7 +6,7 @@ import seaborn as sns
 from data_loader import load_data
 
 # Load the model and test data
-model = load_model('speech_recognition_model.keras')
+model = load_model('speech_recognition_model.keras', compile=False)
 _, X_test, _, y_test = load_data()
 
 # Predict the probabilities for the test set and get the predicted class (with the highest probability)

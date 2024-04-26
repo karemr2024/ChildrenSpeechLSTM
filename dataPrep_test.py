@@ -30,9 +30,9 @@ def save_data(X, y, folder_name):
     np.save(os.path.join(folder_name, 'y.npy'), y)
 
 def main():
-    data_folder_path = '/Users/emre/Desktop/ChildrenSpeechLSTM/data'
-    train_data_path = '/Users/emre/Desktop/ChildrenSpeechLSTM/trainData'
-    test_data_path = '/Users/emre/Desktop/ChildrenSpeechLSTM/testData'
+    data_folder_path = '/Users/emre/Desktop/ChildrenSpeechLSTM_NonGit/data'
+    train_data_path = '/Users/emre/Desktop/ChildrenSpeechLSTM_NonGit/trainData'
+    test_data_path = '/Users/emre/Desktop/ChildrenSpeechLSTM_NonGit/testData'
     
     # Get features and labels from the data folder
     features, labels = get_data_from_folder(data_folder_path)

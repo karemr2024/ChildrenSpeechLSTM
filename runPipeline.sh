@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Path to your Python virtual environment activation script
-ENV_PATH="/Users/emre/Desktop/ChildrenSpeechLSTM/.venv/bin/activate"
+ENV_PATH="/Users/emre/Desktop/ChildrenSpeechLSTM_NonGit/.venv/bin/activate"
 
 # Activate Python environment
 if [ -f "$ENV_PATH" ]; then

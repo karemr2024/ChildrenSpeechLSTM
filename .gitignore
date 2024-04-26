@@ -1,0 +1,22 @@
+# Ignore WAV audio files
+*.wav
+
+# Ignore NumPy array files
+*.npy
+
+# Ignore Keras model files
+*.keras
+
+# Ignore HDF5 model files
+*.h5
+
+# Ignore ONNX model files
+*.onnx
+
+# Ignore PNG and JPEG image files
+*.png
+*.jpg
+
+# Ignore Index and JSON files
+*.json
+*.index

@@ -1,10 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from tensorflow.keras.models import load_model
+from tensorflow import keras
 from data_loader import load_data
 
 # Load the model and test data
-model = load_model('speech_recognition_model.keras')
+model = keras.models.load_model('speech_recognition_model.keras')
 _, X_test, _, y_test = load_data()
 
 # Predict probabilities for the test set

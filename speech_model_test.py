@@ -1,11 +1,14 @@
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras import layers
-from tensorflow.keras.models import Sequential 
-from tensorflow.keras.layers import Bidirectional, LSTM, Dense, Dropout
-from tensorflow.keras.regularizers import l1_l2
+from tensorflow import keras
+from keras import layers
+from keras.models import Sequential 
+from keras.layers import Bidirectional, LSTM, Dense, Dropout
+from keras.regularizers import l1_l2
 from keras_tuner import RandomSearch, Hyperband, BayesianOptimization
 from data_loader import load_data
+import tf2onnx
+import onnx
 
 # Load your data
 X_train, X_test, y_train, y_test = load_data()
@@ -52,6 +55,25 @@ history = model.fit(X_train, y_train, epochs=20, validation_split=0.1)
 eval_result = model.evaluate(X_test, y_test)
 print(f"[Test Loss, Test Accuracy]: {eval_result}")
 
-# Save the model
+# Save the model in multiple formats in case of compatibility issues and for future-proofing
+
+# Save the model in Keras format
 model.save('speech_recognition_model.keras')
+
+# Convert the model to ONNX forma
+model.output_names = ['output']
+input_signature = [tf.TensorSpec(model.inputs[0].shape, model.inputs[0].dtype, name='digit')]
+onnx_model, _ = tf2onnx.convert.from_keras(model, input_signature, opset=13)
+onnx.save(onnx_model, 'speech_recognition_model.onnx')
+
+# # Save as Keras HDF5 model
+# model.save('speech_recognition_model.h5')
+
+# # Save the model in TensorFlow's SavedModel format
+# model.save('/speech_recognition_model', save_format='tf')
+
+# # Save model weights
+# model.save_weights('speech_recognition_model_weights.h5')
+
+
 print("Model saved.")

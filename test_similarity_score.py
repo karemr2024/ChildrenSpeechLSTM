@@ -1,10 +1,10 @@
 import numpy as np
-from tensorflow.keras.models import load_model
+from tensorflow import keras
 from sklearn.metrics import accuracy_score
 from data_loader import load_data
 
 # Load your model and test data
-model = load_model('speech_recognition_model.keras')
+model = keras.models.load_model('speech_recognition_model.keras')
 _, X_test, _, y_test = load_data()
 
 # Predict probabilities for the test set
@@ -32,6 +32,11 @@ similarity_scores = max_probabilities[(predicted_classes == true_labels) & (max_
 # Calculate the average similarity score for correctly classified samples above the threshold
 average_similarity_score = np.mean(similarity_scores)
 print(f"Average similarity score for confident predictions: {average_similarity_score:.4f}")
+
+# Calculate the percentage of similarity scores above the threshold
+percentage_above_threshold = (similarity_scores.size / max_probabilities.size) * 100
+print(f"Percentage of similarity scores above threshold: {percentage_above_threshold:.2f}%")
+
 
 # You can also visualize the distribution of the maximum probabilities
 import matplotlib.pyplot as plt
